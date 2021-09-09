@@ -22,20 +22,28 @@ namespace Carlos_Francisco_Benitez_Quintanilla.Controllers
         {
             return View();
         }
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult ProcVal(CajeroViewModel cajero)
         {
-            if (Convert.ToInt32(cajero.Monto) % 5 == 0)
-            {
-                ViewBag.monto = cajero.Monto;
-                return Redirect("/Cajero/Retiro");
-
+            if (!ModelState.IsValid) {
+                return View("Index", cajero);
             }
             else
             {
-                return Redirect("/Cajero/Error");
+                if (Convert.ToInt32(cajero.Monto) % 5 == 0)
+                {
+                    ViewBag.monto = cajero.Monto;
+                    return View("Retiro");
+
+                }
+                else
+                {
+                    return Redirect("/Cajero/Error");
+                }
+
             }
+            
         }
     }
 }

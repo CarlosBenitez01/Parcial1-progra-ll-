@@ -6,9 +6,12 @@
 
 <h2>Index</h2>
 
-@using(Html.BeginForm("ProcVal","Cajero", FormMethod.Post)){
-    <label for="monto"> Monto: </label>
+@using (Html.BeginForm("ProcVal", "Cajero", FormMethod.Post))
+{
+
+    @Html.LabelFor(m => m.Monto)
     @Html.TextBoxFor(m => m.Monto)
+    @Html.ValidationMessageFor(m => m.Monto, null, new { @class = "red" })
     <br />
 
     <input type="submit">
